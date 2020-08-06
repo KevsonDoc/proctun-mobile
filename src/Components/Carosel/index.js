@@ -21,6 +21,8 @@ const Carosel = () => {
         }
     ]);
 
+    const [ loding, setLoding ] = useState(false);
+
     function getYouTubeId(youtubeURL) {
         return youtubeURL
           .replace(
@@ -34,8 +36,9 @@ const Carosel = () => {
     }
 
     useEffect(() => {
-        api.get('/categorias').then((response) => {
-            setDataApi(response.data);
+        api.get('/categorias').then( async(response) => {
+            await setDataApi(response.data);
+            setLoding(true)
         });
     }, []);
     
